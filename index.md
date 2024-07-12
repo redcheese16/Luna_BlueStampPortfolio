@@ -43,7 +43,7 @@ For your second milestone, explain what you've worked on since your previous mil
 
 # First Milestone
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=xffqFFISyRU&list=PLe-u_DjFx7eticgHvdNBMS-CTTohSGwUM&index=50" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/watch?v=xffqFFISyRU&list=PLe-u_DjFx7eticgHvdNBMS-CTTohSGwUM&index=51" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
   For my first milestone, I began by building my chassis by screwing 2 motors onto the back of the frame and attaching the back wheels to those motors. I then attached the front wheels to the frame by passing a screw through the hole and securing them to the side of my main frame using nuts. I then attached the treads to both wheels. Though the original tread was 50 pieces long, I removed six pieces from each tread to make two treads with 44 pieces. Once I could control the movement of the car, I would be able to move the car forward and backwards by using the back wheels to move the front wheels. 
