@@ -1,11 +1,6 @@
 # HTML Controlled Mini Tank Rover 
 For my Bluestamp Engineering project, I decided to make a Mini Tank Rover. The base project was very easy: assemble the main frame using unclear instructions, attach the motors to the back wheels, and connect the motors to the Arduino R3 Board using H-bridges so that one could control the movement of the rover when the Arduino was plugged into the computer. Once I was done with this part, I could modify the rover as much as I wanted. Thus, I decided to add a Raspberry Pi with a Picamera and a phone battery so that I could control the rover from far away, view its surroundings, and let it run without needing to have it plugged into an outlet. I even made the Picamera footage stream to an HTML website where I could also control the direction the rover was moving.
 
-```HTML 
-<!--- This is an HTML comment in Markdown -->
-<!--- Anything between these symbols will not render on the published site -->
-```
-
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
 | Luna S. | Hunter College High School | Mechanical Engineering | Incoming Sophomore
@@ -39,7 +34,7 @@ For my second milestone, I incorporated a Raspberry Pi into my project. In order
 
 # First Milestone
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=xffqFFISyRU&list=PLe-u_DjFx7eticgHvdNBMS-CTTohSGwUM&index=51" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="<iframe width="560" height="315" src="https://www.youtube.com/embed/xffqFFISyRU?si=LfxO6OGMg3Y71VCj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
   For my first milestone, I began by building my chassis by screwing 2 motors onto the back of the frame and attaching the back wheels to those motors. I then attached the front wheels to the frame by passing a screw through the hole and securing them to the side of my main frame using nuts. I then attached the treads to both wheels. Though the original tread was 50 pieces long, I removed six pieces from each tread to make two treads with 44 pieces. Once I could control the movement of the car, I would be able to move the car forward and backwards by using the back wheels to move the front wheels. 
