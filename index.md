@@ -1,5 +1,5 @@
-# Project Name Here
-Replace this text with a brief description (2-3 sentences) of your project. This description should draw the reader in and make them interested in what you've built. You can include what the biggest challenges, takeaways, and triumphs from completing the project were. As you complete your portfolio, remember your audience is less familiar than you are with all that your project entails!
+# HTML Controlled Mini Tank Rover 
+For my Bluestamp Engineering project, I decided to make a Mini Tank Rover. The base project was very easy: assemble the main frame using unclear instructions, attach the motors to the back wheels, and connect the motors to the Arduino R3 Board using H-bridges so that one could control the movement of the rover when the Arduino was plugged into the computer. Once I was done with this part, I could modify the rover as much as I wanted. Thus, I decided to add a Raspberry Pi with a Picamera and a phone battery so that I could control the rover from far away, view its surroundings, and let it run without needing to have it plugged into an outlet. I even made the Picamera footage stream to an HTML website where I could also control the direction the rover was moving.
 
 You should comment out all portions of your portfolio that you have not completed yet, as well as any instructions:
 ```HTML 
@@ -21,12 +21,9 @@ You should comment out all portions of your portfolio that you have not complete
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/F7M7imOVGug" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-For your final milestone, explain the outcome of your project. Key details to include are:
-- What you've accomplished since your previous milestone
-- What your biggest challenges and triumphs were at BSE
-- A summary of key topics you learned about
-- What you hope to learn in the future after everything you've learned at BSE
+For my third milestone, I got the buttons to work so that I could control the rover’s movements and stream the picamera footage from the same HTML website. In the code for the HTML website in Thonny, I added an onclick sendCommand function to each button so that when I pressed a button, the VNC viewer would tell the Arduino to make the rover move in a specific direction. However, I ran into trouble because I couldn’t get the rover to stop. Rather than create a stop button, I decided to make the default setting for the rover to stop. I wanted the buttons going in different directions would overwrite the stop command and make the rover move, but the moment I stopped pressing on the buttons, for the rover to stop moving. It didn't work out as intended because I didn’t know what to write for stop to become the default setting. Eventually, I added a onmouseleave sendCommand(‘Stop’) after the onclick sendCommand for each button so that the moment the mouse stopped hovering over the button, the rover would stop. Now, I had working buttons on my HTML website and I could make my rover move and stop whenever I wanted. My phone battery had also arrived so I was able to get the rover working without having to keep it plugged into an outlet. 
 
+In the future, I might add a laser pointed to the rover for my cat to chase around. Overall, this was a really fun project and I learned a lot about HTML and Raspberry Pis since I had never worked with either in the past. I'm so happy that I finally completeted my rover and I can't wait to terrorize my cat with it!
 
 
 # Second Milestone
@@ -35,11 +32,10 @@ For your final milestone, explain the outcome of your project. Key details to in
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/y3VAmNlER5Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-For your second milestone, explain what you've worked on since your previous milestone. You can highlight:
-- Technical details of what you've accomplished and how they contribute to the final goal
-- What has been surprising about the project so far
-- Previous challenges you faced that you overcame
-- What needs to be completed before your final milestone 
+For my second milestone, I incorporated a Raspberry Pi into my project. In order to be able to give the Arduino Board directions wirelessly from my computer, I needed a Raspberry Pi to act as a bridge between my computer and Arduino Board. The Raspberry Pi, which connected to my computer via the internet, would easily be able to receive directions from my computer wirelessly. So, I set up my Raspberry Pi and plugged it into the Arduino Board, making sure they could communicate between themselves. I coded for the Raspberry Pi using Thonny in VNC Viewer and connected it to the Arduino IDE. Pretty soon, I was able to send an instruction on which direction to move into my Raspberry Pi which would pass that on to the Arduino IDE and my mini tank rover would move in the desired direction. However, the Raspberry Pi still had to be plugged into an outlet for power and this energy would end up powering my entire rover. My phone battery hasn’t arrived yet, but once it does, I hope to be able to power the Raspberry Pi and rover with it. 
+	
+ I also set up a Picamera2 so that I would be able to view my rover’s surroundings in order to control the rover’s movements from far away. I sourced code from the internet to be able to stream the camera footage on an HTML website. I even added buttons for forward, left, right, and backward on the website, but they do not work yet. For my third milestone, I would like to get the buttons working so that I can control the rover from a single server instead of going back and forth between the VNC Viewer and an HTML website.
+ 
 
 # First Milestone
 
