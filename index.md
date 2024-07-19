@@ -11,8 +11,6 @@ For my Bluestamp Engineering project, I decided to make a Mini Tank Rover. The b
   
 # Final Milestone
 
-**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/h83HP8F7V4o?si=BIfWgpwxgOi7NVMC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 For my third milestone, I got the buttons to work so that I could control the rover’s movements and stream the picamera footage from the same HTML website. In the code for the HTML website in Thonny, I added an onclick sendCommand function to each button so that when I pressed a button, the VNC viewer would tell the Arduino to make the rover move in a specific direction. However, I ran into trouble because I couldn’t get the rover to stop. Rather than create a stop button, I decided to make the default setting for the rover to stop. I wanted the buttons going in different directions would overwrite the stop command and make the rover move, but the moment I stopped pressing on the buttons, for the rover to stop moving. It didn't work out as intended because I didn’t know what to write for stop to become the default setting. Eventually, I added a onmouseleave sendCommand(‘Stop’) after the onclick sendCommand for each button so that the moment the mouse stopped hovering over the button, the rover would stop. Now, I had working buttons on my HTML website and I could make my rover move and stop whenever I wanted. My phone battery had also arrived so I was able to get the rover working without having to keep it plugged into an outlet. 
@@ -21,8 +19,6 @@ In the future, I might add a laser pointed to the rover for my cat to chase arou
 
 
 # Second Milestone
-
-**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/zGZinaz6HhU?si=_vjQ69I5YvR4esAT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
