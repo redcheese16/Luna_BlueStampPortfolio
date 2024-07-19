@@ -45,17 +45,178 @@ Here's where you'll put images of your schematics. [Tinkercad](https://www.tinke
 # Code
 Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. 
 
+
+Code for the Arduino IDE
+
 ```c++
-void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(9600);
-  Serial.println("Hello World!");
-}
 
-void loop() {
-  // put your main code here, to run repeatedly:
 
+```
+
+Code for the HTML Website and Camera Streaming
+
+```c++
+import io
+import logging
+import socketserver
+import serial
+from http import server
+from threading import Condition
+
+from picamera2 import Picamera2
+from picamera2.encoders import JpegEncoder
+from picamera2.outputs import FileOutput
+
+PAGE = """\
+<html>
+<head>
+<title>picamera2 stream</title>
+<style>
+    .controller {
+        display: grid;
+        grid-template-areas: 
+             ". forward ."
+            "left . right"
+            ". backward .";
+        gap: 5px;
+        justify-items: center;
+        align-items: center;
+        height: 100px;
+        width: 100px;
+        margin: 0 auto;
+        }
+    .forward { grid-area: forward; }
+    .left { grid-area: left; }
+    .right { grid-area: right; }
+    .backward { grid-area: backward; }
+    </style>
+</head>
+<body>
+<h1>Picamera2 stream</h1>
+<img src="stream.mjpg" width="640" height="480" />
+<div class="controller">
+        <button class="forward" onclick="sendCommand('Forward')" onmouseleave="sendCommand('Stop')">Forward</button>
+        <button class="left" onclick="sendCommand('Left')" onmouseleave="sendCommand('Stop')">Left</button>
+        <button class="right" onclick="sendCommand('Right')" onmouseleave="sendCommand('Stop')">Right</button>
+        <button class="backward" onclick="sendCommand('Backward')" onmouseleave="sendCommand('Stop')">Backward</button>
+</div>
+<script>
+function sendCommand(command) {
+    fetch('/command?direction=' + command);
 }
+</script>
+</body>
+</html>
+"""
+
+class StreamingOutput(io.BufferedIOBase):
+    def __init__(self):
+        self.frame = None
+        self.condition = Condition()
+
+    def write(self, buf):
+        with self.condition:
+            self.frame = buf
+            self.condition.notify_all()
+
+
+class StreamingHandler(server.BaseHTTPRequestHandler):
+    def do_GET(self):
+        if self.path == '/':
+            self.send_response(301)
+            self.send_header('Location', '/index.html')
+            self.end_headers()
+        elif self.path == '/index.html':
+            content = PAGE.encode('utf-8')
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/html')
+            self.send_header('Content-Length', len(content))
+            self.end_headers()
+            self.wfile.write(content)
+        elif self.path == '/stream.mjpg':
+            self.send_response(200)
+            self.send_header('Age', 0)
+            self.send_header('Cache-Control', 'no-cache, private')
+            self.send_header('Pragma', 'no-cache')
+            self.send_header('Content-Type', 'multipart/x-mixed-replace; boundary=FRAME')
+            self.end_headers()
+            try:
+                while True:
+                    with output.condition:
+                        output.condition.wait()
+                        frame = output.frame
+                    self.wfile.write(b'--FRAME\r\n')
+                    self.send_header('Content-Type', 'image/jpeg')
+                    self.send_header('Content-Length', len(frame))
+                    self.end_headers()
+                    self.wfile.write(frame)
+                    self.wfile.write(b'\r\n')
+            except Exception as e:
+                logging.warning(
+                    'Removed streaming client %s: %s',
+                    self.client_address, str(e))
+        elif self.path.startswith('/command'):
+            query = self.path.split('?')[1]
+            params = dict(qc.split('=') for qc in query.split('&'))
+            direction = params.get('direction', '')
+            
+            if direction == "Forward":
+                ser.write(b"i\n")
+                print(direction)
+            elif direction == "Left":
+                ser.write(b"j\n")
+                print(direction)
+            elif direction == "Backward":
+                ser.write(b"k\n")
+                print(direction)
+            elif direction == "Right":
+                ser.write(b"l\n")
+                print(direction)
+            elif direction == "Stop":
+                ser.write(b"s\n")
+                print(direction)
+                
+                
+            # Send command to Arduino
+            
+            # if direction == "Forward":
+            #     ser.write(b"i\n")
+            # elif direction == "Left":
+            #     ser.write(b"j\n")
+            # elif direction == "Backward":
+            #     ser.write(b"k\n")
+            # elif direction == "Right":
+            #     ser.write(b"l\n")
+                #else:
+                #    self.send_response(400)
+                #    self.end_headers()
+        # else:
+        #     self.send_error(404)
+        #     self.end_headers()
+
+
+class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
+    allow_reuse_address = True
+    daemon_threads = True
+
+
+# Setup serial connection to Arduino
+ser = serial.Serial('/dev/ttyACM0', 9600)  # Adjust the port name accordingly
+
+
+picam2 = Picamera2()
+picam2.configure(picam2.create_video_configuration(main={"size": (640, 480)}))
+output = StreamingOutput()
+picam2.start_recording(JpegEncoder(), FileOutput(output))
+
+try:
+    address = ('', 7123)
+    server = StreamingServer(address, StreamingHandler)
+    server.serve_forever()
+finally:
+    picam2.stop_recording()
+    ser.close()
+
 ```
 
 # Bill of Materials
