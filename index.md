@@ -1,7 +1,6 @@
 # HTML Controlled Mini Tank Rover 
 For my Bluestamp Engineering project, I decided to make a Mini Tank Rover. The base project was very easy: assemble the main frame using unclear instructions, attach the motors to the back wheels, and connect the motors to the Arduino R3 Board using H-bridges so that one could control the movement of the rover when the Arduino was plugged into the computer. Once I was done with this part, I could modify the rover as much as I wanted. Thus, I decided to add a Raspberry Pi with a Picamera and a phone battery so that I could control the rover from far away, view its surroundings, and let it run without needing to have it plugged into an outlet. I even made the Picamera footage stream to an HTML website where I could also control the direction the rover was moving.
 
-You should comment out all portions of your portfolio that you have not completed yet, as well as any instructions:
 ```HTML 
 <!--- This is an HTML comment in Markdown -->
 <!--- Anything between these symbols will not render on the published site -->
