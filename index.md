@@ -5,7 +5,7 @@ For my Bluestamp Engineering project, I decided to make a Mini Tank Rover. The b
 |:--:|:--:|:--:|:--:|
 | Luna S. | Hunter College High School | Mechanical Engineering | Incoming Sophomore
 
-![Book logo](/least-github-pages/assets/IMG_8982 2.HEIC)
+![Book logo](Screenshot)
   
 # Final Milestone
 
