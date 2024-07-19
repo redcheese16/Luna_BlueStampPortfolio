@@ -47,7 +47,107 @@ Here's where you'll put images of your schematics. [Tinkercad](https://www.tinke
 Code for the Arduino IDE
 
 ```c++
+//motor A input A for backward
+const int AIA = 3;
+//motor A input B for forward
+const int AIB = 4;
+//motor B input A for backward
+const int BIA = 5;
+//motor B input B for forward
+cont inst BIB = 6;
+char c = "";
 
+
+
+void setup() {
+  // put your setup code here, to run once:
+
+  //set up variables representing the motors for output
+  pinMode(AIB, OUTPUT);
+  pinMode(AIA, OUTPUT);
+  pinMode(BIB, OUTPUT);
+  pinMode(BIA, OUTPUT);
+
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+  //set up the if statement for the switch case statement
+  if (Serial.available()){
+    c = (char)Serial.read();
+    Serial.println(c);
+  }
+
+  //switch case statement to perform a single function under a single condition when multiple exist
+  switch(c){
+    //if letter "i" is inputed, the tank performs the forward action
+    case 'i':
+      forward();
+      break;
+
+    //if letter "k" is inputed, the tank performs the backward action
+    case 'k':
+      backward();
+      break;
+
+    //if letter "l" is inputed, the tank performs the right action
+    case 'l':
+      right();
+      break;
+
+    //if letter "j" is inputed, the tank performs the left action
+    case 'j':
+      left();
+      break;
+
+    //if letter "s" is inputed, the tank performs the stop action
+    case 's':
+      stop();
+      break;
+  }
+}
+
+//function to make tank go forward
+void forward() {
+  digitalWrite(AIB, HIGH);
+  digitalWrite(AIA, LOW);
+  digitalWrite(BIB, LOW);
+  digitalWrite(BIA, HIGH);
+}
+
+//function to make tank go backward
+void backward() {
+  digitalWrite(AIB, LOW);
+  digitalWrite(AIA, HIGH);
+  digitalWrite(BIB, HIGH);
+  digitalWrite(BIA, LOW);
+}
+
+//function to make tank go right
+void right() {
+  digitalWrite(AIB, HIGH);
+  digitalWrite(AIA, LOW);
+  digitalWrite(BIB, HIGH);
+  digitalWrite(BIA, LOW);
+}
+
+//function to make tank go left
+void left() {
+  digitalWrite(AIB, LOW);
+  digitalWrite(AIA, HIGH);
+  digitalWrite(BIB, LOW);
+  digitalWrite(BIA, HIGH);
+}
+
+//function to make tank stop
+void stop() {
+  digitalWrite(AIB, LOW);
+  digitalWrite(AIA, LOW);
+  digitalWrite(BIB, LOW);
+  digitalWrite(BIA, LOW);
+}
 
 ```
 
